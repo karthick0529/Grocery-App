@@ -31,7 +31,9 @@ export const AppContextProvider = ({ children }) => {
         setIsSeller(false);
       }
     } catch (error) {
-      console.log(error);
+     if (error.response?.status !== 401) {
+      console.error("Error fetching seller:", error);
+    }
       setIsSeller(false); 
     }
   }
@@ -47,7 +49,9 @@ export const AppContextProvider = ({ children }) => {
         setCartItems(data.user.cartItems);
       }
     } catch (error) {
-      console.log(error);
+      if (error.response?.status !== 401) {
+      console.error("Error fetching User:", error);
+    }
       setUser(null);
     }
   }
