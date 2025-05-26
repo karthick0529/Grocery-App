@@ -1,7 +1,7 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
 import Product from "../models/Product.js";
-import stripe from "stripe";
+import Stripe from "stripe";
 
 // Place Order COD : /api/order/cod
 
@@ -89,7 +89,7 @@ export const placeOrderStripe = async (req, res) => {
 
     // Stripe Gateway Integration
 
-    const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
+    const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     //create line items for stripe
 
