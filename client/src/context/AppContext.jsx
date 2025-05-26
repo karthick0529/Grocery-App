@@ -37,6 +37,22 @@ export const AppContextProvider = ({ children }) => {
   }
 
 
+  // Fetch user Auth details,user data and cart items
+
+  const fetchUser = async () => {
+    try {
+      const { data } = await axios.get("/api/user/is-auth");
+      if (data.success) {
+        setUser(data.user);
+        setCartItems(data.user.cartItems);
+      }
+    } catch (error) {
+      console.log(error);
+      setUser(null);
+    }
+  }
+
+
   // Fetch all products
   const fetchProducts = async () => {
     // setProducts(dummyProducts);
@@ -113,9 +129,33 @@ export const AppContextProvider = ({ children }) => {
 
 
   useEffect(() => {
+    fetchUser();
     fetchSeller();
     fetchProducts();
   }, []);
+
+
+  // Update cart items in local storage or server
+
+  useEffect(() => {
+    const updateCart = async () => {
+      try {
+        const { data } = await axios.post("/api/cart/update", {
+           userId: user._id, cartItems
+        });
+        if (!data.success) {
+          toast.error(data.message);
+        } 
+      } catch (error) {
+        toast.error("Something went wrong while updating cart", error.message);
+      }
+    };
+
+    if(user){
+    updateCart();
+    }
+  },[cartItems,user]);
+
 
   const value = {
     navigate,
@@ -131,6 +171,7 @@ export const AppContextProvider = ({ children }) => {
     updateCartItem,
     removeFromCart,
     cartItems,
+    setCartItems, 
     searchQuery,
     setSearchQuery,
     getCartAmount,
