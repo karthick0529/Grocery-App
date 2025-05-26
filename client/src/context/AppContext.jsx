@@ -130,14 +130,11 @@ export const AppContextProvider = ({ children }) => {
     return Math.floor(totalAmount * 100) / 100;
   }
 
-
-
   useEffect(() => {
     fetchUser();
     fetchSeller();
     fetchProducts();
   }, []);
-
 
   // Update cart items in local storage or server
 

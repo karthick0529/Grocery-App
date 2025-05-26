@@ -22,8 +22,9 @@ const Login = () => {
             password,
           });
           if (data.success) {
-            navigate("/");
             setUser(data.user);
+            // await fetchUser();  
+            navigate("/");
             setShowUserLogin(false);
             toast.success(data.message);
           }else {
