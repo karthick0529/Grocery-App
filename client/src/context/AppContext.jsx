@@ -19,6 +19,12 @@ export const AppContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
+  const [pagination, setPagination] = useState({
+        page: 1,
+        limit: 10,
+        total: 0,
+        
+    })
 
   // Fetch seller status
 
@@ -130,11 +136,31 @@ export const AppContextProvider = ({ children }) => {
     return Math.floor(totalAmount * 100) / 100;
   }
 
+  // useEffect(() => {
+  //   fetchUser();
+  //   fetchSeller();
+  //   fetchProducts();
+  // }, []);
+
   useEffect(() => {
-    fetchUser();
-    fetchSeller();
-    fetchProducts();
-  }, []);
+        fetchSeller()
+    }, [])
+
+  useEffect(() => {
+        fetchUser()
+    }, [])
+
+    useEffect(() => {
+        if (isSeller) {
+            setProducts([]);
+            setPagination(prev => ({ ...prev, page: 1 }));
+        }
+    }, [isSeller]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [pagination.page, isSeller]);
+
 
   // Update cart items in local storage or server
 
