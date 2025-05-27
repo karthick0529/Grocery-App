@@ -50,7 +50,7 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        {!user && (
+         
           <NavLink
             to="/seller"
             className={({ isActive }) =>
@@ -63,7 +63,7 @@ const Navbar = () => {
           >
             Seller Dashboard
           </NavLink>
-        )}
+        
 
         <NavLink to="/">Home</NavLink>
         <NavLink to="/products" className="whitespace-nowrap">
@@ -156,7 +156,7 @@ const Navbar = () => {
             open ? "flex" : "hidden"
           } absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden z-50`}
         >
-          {!user && (
+          
             <NavLink
               to="/seller"
               className={({ isActive }) =>
@@ -170,7 +170,7 @@ const Navbar = () => {
             >
               Seller Dashboard
             </NavLink>
-          )}
+          
 
           <NavLink to="/" onClick={() => setOpen(false)}>
             Home
