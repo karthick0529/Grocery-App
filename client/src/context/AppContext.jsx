@@ -19,12 +19,13 @@ export const AppContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [searchQuery, setSearchQuery] = useState({});
-  const [pagination, setPagination] = useState({
-        page: 1,
-        limit: 10,
-        total: 0,
+  
+  // const [pagination, setPagination] = useState({
+  //       page: 1,
+  //       limit: 10,
+  //       total: 0,
         
-    })
+  //   })
 
   // Fetch seller status
 
@@ -49,14 +50,14 @@ export const AppContextProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get("/api/user/is-auth");
+      const {data} = await axios.get("/api/user/is-auth");
       if (data.success) {
         setUser(data.user);
         setCartItems(data.user.cartItems);
       }
     } catch (error) {
       if (error.response?.status !== 401) {
-      console.error("Error fetching User:", error);
+              console.error("Error fetching User:", error);
     }
       setUser(null);
     }
@@ -136,30 +137,34 @@ export const AppContextProvider = ({ children }) => {
     return Math.floor(totalAmount * 100) / 100;
   }
 
+  useEffect(() => {
+    fetchUser();
+    fetchSeller();
+    fetchProducts();
+  }, []);
+
   // useEffect(() => {
-  //   fetchUser();
-  //   fetchSeller();
-  //   fetchProducts();
-  // }, []);
+  //   if(isSeller) {
+  //      fetchSeller()
+  //   }    
+  //   }, [isSeller])
 
-  useEffect(() => {
-        fetchSeller()
-    }, [])
+  // useEffect(() => {
+  //   if (user) {
+  //       fetchUser()
+  //   }
+  //   }, [])
 
-  useEffect(() => {
-        fetchUser()
-    }, [])
+  //   useEffect(() => {
+  //       if (isSeller) {
+  //           setProducts([]);
+  //           setPagination(prev => ({ ...prev, page: 1 }));
+  //       }
+  //   }, [isSeller]);
 
-    useEffect(() => {
-        if (isSeller) {
-            setProducts([]);
-            setPagination(prev => ({ ...prev, page: 1 }));
-        }
-    }, [isSeller]);
-
-    useEffect(() => {
-        fetchProducts();
-    }, [pagination.page, isSeller]);
+  //   useEffect(() => {
+  //       fetchProducts();
+  //   }, [pagination.page, isSeller]);
 
 
   // Update cart items in local storage or server
