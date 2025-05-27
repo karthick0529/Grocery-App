@@ -18,7 +18,7 @@ await connectDB();
 await connectCloudinary();
 
 // Allowed origins for CORS
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = ["http://localhost:5173", "https://grocery-app-frontend-tawny.vercel.app"];
 
 app.post("/stripe", express.raw({ type: "application/json" }), stripeWebhooks);
 
