@@ -1,0 +1,40 @@
+🛒 GreenCart
+
+GreenCart is a modern full-stack grocery store application built with the MERN stack, featuring a user-friendly UI, an admin dashboard, category filtering, cart management, and two payment options: online via Stripe and cash on delivery.
+
+🌐 Live site: https://grocery-app-frontend-seven.vercel.app
+
+📦 GitHub repository: https://github.com/karthick0529/Grocery-App
+
+🚀 Features:
+
+    🧑‍💼 User authentication (Email/Password)
+
+    🛠️ Profile update support
+
+    🛍️ Browse and filter products by category
+
+    🔍 Product search functionality
+
+    🛒 Add/remove items from the cart
+
+    💳 Two payment methods: Stripe (online) or Cash on Delivery
+
+    📦 Admin dashboard for order and product management 
+
+    ☁️ Image upload with Cloudinary
+
+🛠️ Tech Stack: 
+
+    Frontend: React, Tailwind CSS, Axios, React Router DOM
+
+    Backend: Node.js, Express, MongoDB (Mongoose)
+
+    Authentication: JWT Token
+
+    Payments: Stripe API (with webhook support)
+
+    Media Hosting: Cloudinary
+
+    Deployment: Vercel (Frontend, Backend)
+
